@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Fady</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="top">
+                <div class="avatar-container" onclick="nextTheme()">
+                    <img src="avatar.png" alt="Fady">
+                </div>
+
+                <div class="time-container">
+
+                    <div id="clock">00:00</div>
+                    <div id="date">Monday, January 1</div>
+                </div>
+                <div class="greeting-container">
+                    <h2 id="greeting">Welcome back</h2>
+                    <div class="status-container">
+                        <div class="status-item"><span>󰻠</span> <span id="cpu-load">CPU: 12%</span></div>
+                        <div class="status-item"><span>󰍛</span> <span id="mem-usage">MEM: 4.2GB</span></div>
+                        <div class="status-item"><span>󰖐</span> <span id="weather">Washington: 68°F</span></div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            
+            <div class="bottom">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search the web..." autocomplete="off">
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="category">
+                <h3 class="category-title"><span>󰋜</span> General</h3>
+                <ul class="links">
+                    <li><a href="https://google.com">Google</a></li>
+                    <li><a href="https://youtube.com">YouTube</a></li>
+                    <li><a href="https://monkeytype.com">MonkeyType</a></li>
+                    <li><a href="https://mail.proton.me">ProtonMail</a></li>
+                </ul>
+            </section>
+
+            <section class="category">
+                <h3 class="category-title"><span>󰅩</span> Dev</h3>
+                <ul class="links">
+                    <li><a href="https://github.com">GitHub</a></li>
+                    <li><a href="https://codesignal.com">CodeSignal</a></li>
+                    <li><a href="https://projecteuler.net">ProjectEuler</a></li>
+
+                    <li><a href="https://tryhackme.com">TryHackMe</a></li>
+                    <li><a href="https://stackoverflow.com">StackOverflow</a></li>
+                    <li><a href="https://news.ycombinator.com">HackerNews</a></li>
+
+                </ul>
+            </section>
+
+            <section class="category">
+                <h3 class="category-title"><span>󰙯</span> Social</h3>
+                <ul class="links">
+                    <li><a href="https://reddit.com">Reddit</a></li>
+                    <li><a href="https://twitter.com">Twitter</a></li>
+                    <li><a href="https://discord.com">Discord</a></li>
+                </ul>
+            </section>
+
+            <section class="category">
+                <h3 class="category-title"><span>󰝚</span> Media</h3>
+                <ul class="links">
+                    <li><a href="https://netflix.com">Netflix</a></li>
+                    <li><a href="https://spotify.com">Spotify</a></li>
+                    <li><a href="https://twitch.tv">Twitch</a></li>
+                </ul>
+            </section>
+
+            <section class="category todo-section">
+                <h3 class="category-title"><span>󰗡</span> Tasks</h3>
+                <ul class="links" id="todo-list">
+                    <!-- Tasks will be injected here -->
+                </ul>
+                <div class="todo-input-container">
+                    <input type="text" id="todo-input" placeholder="Add task..." autocomplete="off">
+                </div>
+            </section>
+
+
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
