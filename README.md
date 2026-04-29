@@ -2,21 +2,19 @@
 
 **Live Demo: [https://justfady.github.io/startpage/](https://justfady.github.io/startpage/)**
 
-A premium, high-performance browser startpage designed with Glassmorphism aesthetics and dynamic theme integration.
-
+A clean and cool browser startpage with a glass look. You can switch between 4 different themes.
 
 ---
 
-### Key Features
-- Theme Cycle: 4 distinct, high-quality aesthetic backgrounds.
-- Real-time Weather: Live weather updates for your location via the wttr.in API.
-- System Status: Dynamic simulation of CPU and Memory usage for a high-tech dashboard feel.
-- Persistent Tasks: A built-in todo list with LocalStorage persistence and checkbox completion.
-- Global Search: Integrated search bar with smooth transitions and Google integration.
-- Fully Responsive: Optimized for all screen sizes with a clean, centered layout.
+### Features
+- 4 Backgrounds: Choose from cars, space, nature, or anime.
+- Live Weather: See the weather for your area.
+- PC Status: Shows how your CPU and memory are doing.
+- Task List: Add things to do and check them off.
+- Search Bar: Use Google right from the dashboard.
+- Works on everything: Looks good on phones and computers.
 
-### Technology Stack
-- Frontend: Vanilla HTML5, CSS3 (Glassmorphism), JavaScript (ES6+)
-- Storage: localStorage for theme and task persistence
-- API: wttr.in for live weather data
-- Typography: Inter, JetBrains Mono, and SpaceMono Nerd Font
+### Made with
+- HTML, CSS, and JavaScript.
+- Weather from wttr.in.
+- Nice fonts from Inter and JetBrains.
