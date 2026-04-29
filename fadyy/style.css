@@ -15,9 +15,10 @@
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.6);
     --accent: #7aa2f7;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-blur: blur(20px);
+    --glass-bg: rgba(255, 255, 255, 0.01);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-blur: blur(8px);
+
     --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
     --bg-image: url('bg1.png');
 }
@@ -39,7 +40,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), var(--bg-image);
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), var(--bg-image);
+
     background-size: cover;
     background-position: center;
     transition: background 0.5s ease-in-out;
