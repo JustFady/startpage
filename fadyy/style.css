@@ -259,9 +259,35 @@ body {
 }
 
 .todo-section {
-    grid-column: 1 / -1;
     background: rgba(122, 162, 247, 0.05);
 }
+
+.todo-checkbox {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.todo-checkbox:checked {
+    background: var(--accent);
+}
+
+.todo-checkbox:checked::after {
+    content: '󰄬';
+    font-family: 'SpaceMono Nerd Font';
+    position: absolute;
+    color: black;
+    font-size: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 .todo-input-container {
     margin-top: 1rem;

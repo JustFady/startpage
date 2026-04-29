@@ -111,12 +111,16 @@ function loadTodos() {
     todos.forEach((todo, index) => {
         const li = document.createElement('li');
         li.innerHTML = `
-            <span>${todo}</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" class="todo-checkbox" onclick="deleteTodo(${index})">
+                <span>${todo}</span>
+            </div>
             <span class="todo-delete" onclick="deleteTodo(${index})">󰅖</span>
         `;
         todoList.appendChild(li);
     });
 }
+
 
 function addTodo(event) {
     if (event.key === 'Enter' && event.target.value.trim()) {
