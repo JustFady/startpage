@@ -19,8 +19,9 @@ const themes = [
     {
         "--bg-color": "#1a1a05",
         "--accent": "#facc15",
-        "--bg-image": "url('bg4.png?v=6')"
+        "--bg-image": "url('bg4.jpg?v=6')"
     }
+
 ];
 
 
