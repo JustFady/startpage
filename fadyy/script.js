@@ -4,24 +4,25 @@ const themes = [
     {
         "--bg-color": "#0a0a0c",
         "--accent": "#bb9af7",
-        "--bg-image": "url('bg1.png')"
+        "--bg-image": "url('bg1.png?v=1')"
     },
     {
         "--bg-color": "#0d0a0f",
         "--accent": "#7aa2f7",
-        "--bg-image": "url('bg2.png')"
+        "--bg-image": "url('bg2.png?v=1')"
     },
     {
         "--bg-color": "#051105",
         "--accent": "#73daca",
-        "--bg-image": "url('bg3.png')"
+        "--bg-image": "url('bg3.png?v=1')"
     },
     {
         "--bg-color": "#0a0a0f",
         "--accent": "#bb9af7",
-        "--bg-image": "url('bg4.png')"
+        "--bg-image": "url('bg4.png?v=1')"
     }
 ];
+
 
 
 
