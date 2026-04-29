@@ -8,27 +8,39 @@ const themes = [
     },
     {
         "--bg-color": "#0d0211",
-        "--accent": "#ff007c",
+        "--accent": "#bb9af7",
         "--bg-image": "url('bg2.png')"
-    },
-    {
-        "--bg-color": "#1a0f0a",
-        "--accent": "#ff9e64",
-        "--bg-image": "url('bg3.png')"
     },
     {
         "--bg-color": "#051105",
         "--accent": "#73daca",
-        "--bg-image": "url('bg4.png')"
+        "--bg-image": "url('bg3.png')"
+    },
+    {
+        "--bg-color": "#ffffff",
+        "--accent": "#1a1b26",
+        "--bg-image": "url('bg4.png')",
+        "--text-primary": "#1a1b26",
+        "--text-secondary": "rgba(26, 27, 38, 0.6)",
+        "--glass-bg": "rgba(0, 0, 0, 0.03)",
+        "--glass-border": "rgba(0, 0, 0, 0.08)"
     }
 ];
 
+
 function applyTheme(index) {
     const theme = themes[index];
+    // Reset defaults first for themes that don't specify them
+    document.documentElement.style.setProperty("--text-primary", "#ffffff");
+    document.documentElement.style.setProperty("--text-secondary", "rgba(255, 255, 255, 0.6)");
+    document.documentElement.style.setProperty("--glass-bg", "rgba(255, 255, 255, 0.03)");
+    document.documentElement.style.setProperty("--glass-border", "rgba(255, 255, 255, 0.08)");
+    
     for (const [property, value] of Object.entries(theme)) {
         document.documentElement.style.setProperty(property, value);
     }
 }
+
 
 function nextTheme() {
     currentThemeIndex = (currentThemeIndex + 1) % themes.length;
