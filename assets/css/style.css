@@ -3,8 +3,9 @@
   font-display: swap;
   src:
     local("SpaceMono Nerd Font"),
-    url(fonts/SpaceMonoNF.woff2) format("woff2"),
-    url(fonts/SpaceMonoNF.woff) format("woff");
+    url(../fonts/SpaceMonoNF.woff2) format("woff2"),
+    url(../fonts/SpaceMonoNF.woff) format("woff");
+
 
 }
 
@@ -21,7 +22,8 @@
     --glass-blur: blur(8px);
 
     --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-    --bg-image: url('bg1.png');
+    --bg-image: url('../images/bg1.jpg?v=8');
+
 }
 
 
