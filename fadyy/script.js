@@ -3,12 +3,12 @@ let currentThemeIndex = parseInt(localStorage.getItem('fadyy_theme_index')) || 0
 const themes = [
     {
         "--bg-color": "#0a0a0c",
-        "--accent": "#7aa2f7",
+        "--accent": "#bb9af7",
         "--bg-image": "url('bg1.png')"
     },
     {
-        "--bg-color": "#0d0211",
-        "--accent": "#bb9af7",
+        "--bg-color": "#0d0a0f",
+        "--accent": "#7aa2f7",
         "--bg-image": "url('bg2.png')"
     },
     {
@@ -17,15 +17,12 @@ const themes = [
         "--bg-image": "url('bg3.png')"
     },
     {
-        "--bg-color": "#ffffff",
-        "--accent": "#1a1b26",
-        "--bg-image": "url('bg4.png')",
-        "--text-primary": "#1a1b26",
-        "--text-secondary": "rgba(26, 27, 38, 0.6)",
-        "--glass-bg": "rgba(0, 0, 0, 0.03)",
-        "--glass-border": "rgba(0, 0, 0, 0.08)"
+        "--bg-color": "#0a0a0f",
+        "--accent": "#bb9af7",
+        "--bg-image": "url('bg4.png')"
     }
 ];
+
 
 
 function applyTheme(index) {
