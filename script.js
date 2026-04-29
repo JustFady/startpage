@@ -4,42 +4,40 @@ const themes = [
     {
         "--bg-color": "#0a0c10",
         "--accent": "#38bdf8",
-        "--bg-image": "url('images/bg1.jpg?v=9')"
-
+        "--bg-image": "url('images/bg1.jpg?v=10')"
     },
     {
         "--bg-color": "#050805",
         "--accent": "#4ade80",
-        "--bg-image": "url('images/bg2.jpg?v=9')"
-
+        "--bg-image": "url('images/bg2.jpg?v=10')"
     },
     {
         "--bg-color": "#0f0514",
         "--accent": "#c084fc",
-        "--bg-image": "url('images/bg3.jpg?v=9')"
-
+        "--bg-image": "url('images/bg3.jpg?v=10')"
     },
     {
         "--bg-color": "#150505",
         "--accent": "#ff003c",
-        "--bg-image": "url('images/bg4.jpg?v=9')"
-
+        "--bg-image": "url('images/bg4.jpg?v=10')"
     }
-
-
-
 ];
 
-
-
-
-
-
-
+const quotes = [
+    { text: "The best revenge is to be unlike him who performed the injury.", author: "Marcus Aurelius" },
+    { text: "We suffer more often in imagination than in reality.", author: "Seneca" },
+    { text: "A fit body, a calm mind, a house full of love. These things cannot be bought — they must be earned.", author: "Naval Ravikant" },
+    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+    { text: "Discipline is choosing between what you want now and what you want most.", author: "Abraham Lincoln" },
+    { text: "He who has a why to live can bear almost any how.", author: "Friedrich Nietzsche" },
+    { text: "The secret of change is to focus all of your energy not on fighting the old, but on building the new.", author: "Socrates" },
+    { text: "We are what we repeatedly do. Excellence, then, is not an act, but a habit.", author: "Aristotle" },
+    { text: "No man ever steps in the same river twice, for it's not the same river and he's not the same man.", author: "Heraclitus" },
+    { text: "Life is very simple, but we insist on making it complicated.", author: "Confucius" }
+];
 
 function applyTheme(index) {
     const theme = themes[index];
-    // Reset defaults first for themes that don't specify them
     document.documentElement.style.setProperty("--text-primary", "#ffffff");
     document.documentElement.style.setProperty("--text-secondary", "rgba(255, 255, 255, 0.6)");
     document.documentElement.style.setProperty("--glass-bg", "rgba(255, 255, 255, 0.03)");
@@ -50,7 +48,6 @@ function applyTheme(index) {
     }
 }
 
-
 function nextTheme() {
     currentThemeIndex = (currentThemeIndex + 1) % themes.length;
     localStorage.setItem('fadyy_theme_index', currentThemeIndex);
@@ -58,7 +55,6 @@ function nextTheme() {
 }
 
 function updateTime() {
-
     const clock = document.getElementById('clock');
     const dateElement = document.getElementById('date');
     const now = new Date();
@@ -90,7 +86,6 @@ function updateStatus() {
 
 function fetchWeather() {
     const weatherElement = document.getElementById('weather');
-    // Using JSON format (j1) to get structured data safely
     fetch('https://wttr.in/?format=j1')
         .then(response => response.json())
         .then(data => {
@@ -105,15 +100,8 @@ function fetchWeather() {
         });
 }
 
-
-
-
-
-const todoInput = document.getElementById('todo-input');
-
-const todoList = document.getElementById('todo-list');
-
 function loadTodos() {
+    const todoList = document.getElementById('todo-list');
     const todos = JSON.parse(localStorage.getItem('fadyy_todos')) || [];
     todoList.innerHTML = '';
     todos.forEach((todo, index) => {
@@ -128,7 +116,6 @@ function loadTodos() {
         todoList.appendChild(li);
     });
 }
-
 
 function addTodo(event) {
     if (event.key === 'Enter' && event.target.value.trim()) {
@@ -147,25 +134,30 @@ function deleteTodo(index) {
     loadTodos();
 }
 
+function displayQuote() {
+    const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+    const quote = quotes[dayOfYear % quotes.length];
+    document.getElementById('quote-text').textContent = `"${quote.text}"`;
+    document.getElementById('quote-author').textContent = `- ${quote.author}`;
+}
+
 // Initial calls
 applyTheme(currentThemeIndex);
 updateTime();
 updateStatus();
 loadTodos();
 fetchWeather();
+displayQuote();
 
 setInterval(updateTime, 1000);
 setInterval(updateStatus, 3000);
-setInterval(fetchWeather, 600000); // Update weather every 10 minutes
-
+setInterval(fetchWeather, 600000);
 
 document.getElementById('search-input').addEventListener('keydown', handleSearch);
-todoInput.addEventListener('keydown', addTodo);
+document.getElementById('todo-input').addEventListener('keydown', addTodo);
 
-// Add a simple welcome message based on time of day
 const greeting = document.getElementById('greeting');
 const hour = new Date().getHours();
 if (hour < 12) greeting.textContent = 'Good morning, Fady';
 else if (hour < 18) greeting.textContent = 'Good afternoon, Fady';
 else greeting.textContent = 'Good evening, Fady';
-

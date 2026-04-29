@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Fady</title>
 
-    <link rel="stylesheet" href="style.css?v=9">
-
-
-
-
-
-
+    <link rel="stylesheet" href="style.css?v=10">
 
 </head>
 <body>
@@ -19,26 +13,27 @@
         <aside class="sidebar">
             <div class="top">
                 <div class="avatar-container" onclick="nextTheme()">
-                    <img src="images/avatar.png?v=9" alt="Avatar">
-
+                    <img src="images/avatar.png?v=10" alt="Avatar">
                 </div>
 
                 <div class="time-container">
-
                     <div id="clock">00:00</div>
                     <div id="date">Monday, January 1</div>
                 </div>
+
                 <div class="greeting-container">
                     <h2 id="greeting">Welcome back</h2>
                     <div class="status-container">
-                        <div class="status-item"><span>󰻠</span> <span id="cpu-load">CPU: 12%</span></div>
-                        <div class="status-item"><span>󰍛</span> <span id="mem-usage">MEM: 4.2GB</span></div>
-                        <div class="status-item"><span>󰖐</span> <span id="weather">Washington: 68°F</span></div>
+                        <div class="status-item"><span>󰻠</span> <span id="cpu-load">CPU: --</span></div>
+                        <div class="status-item"><span>󰍛</span> <span id="mem-usage">MEM: --</span></div>
+                        <div class="status-item"><span>󰖐</span> <span id="weather">Loading...</span></div>
                     </div>
-
-
                 </div>
 
+                <div class="quote-container">
+                    <p id="quote-text"></p>
+                    <p id="quote-author"></p>
+                </div>
             </div>
             
             <div class="bottom">
@@ -59,8 +54,6 @@
                     <li><a href="https://reddit.com">Reddit</a></li>
                     <li><a href="https://monkeytype.com">MonkeyType</a></li>
                 </ul>
-
-
             </section>
 
             <section class="category">
@@ -69,11 +62,9 @@
                     <li><a href="https://github.com">GitHub</a></li>
                     <li><a href="https://codesignal.com">CodeSignal</a></li>
                     <li><a href="https://projecteuler.net">ProjectEuler</a></li>
-
                     <li><a href="https://tryhackme.com">TryHackMe</a></li>
                     <li><a href="https://stackoverflow.com">StackOverflow</a></li>
                     <li><a href="https://news.ycombinator.com">HackerNews</a></li>
-
                 </ul>
             </section>
 
@@ -97,17 +88,8 @@
                     <input type="text" id="todo-input" placeholder="Add task..." autocomplete="off">
                 </div>
             </section>
-
-
         </main>
     </div>
-    <script src="script.js?v=9"></script>
-
-
-
-
-
-
-
+    <script src="script.js?v=10"></script>
 </body>
 </html>

@@ -170,6 +170,33 @@ body {
     color: var(--accent);
 }
 
+.quote-container {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border-left: 2px solid var(--accent);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 0 12px 12px 0;
+    text-align: left;
+    max-width: 280px;
+}
+
+#quote-text {
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+}
+
+#quote-author {
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
 
 #search-input {
     width: 100%;
