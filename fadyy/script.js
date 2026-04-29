@@ -2,26 +2,27 @@ let currentThemeIndex = parseInt(localStorage.getItem('fadyy_theme_index')) || 0
 
 const themes = [
     {
-        "--bg-color": "#0a0a0c",
-        "--accent": "#bb9af7",
-        "--bg-image": "url('bg1.png?v=5')"
+        "--bg-color": "#0a0c10",
+        "--accent": "#38bdf8",
+        "--bg-image": "url('bg1.jpg?v=6')"
     },
     {
-        "--bg-color": "#050505",
-        "--accent": "#ffffff",
-        "--bg-image": "url('bg2.png?v=5')"
+        "--bg-color": "#050805",
+        "--accent": "#4ade80",
+        "--bg-image": "url('bg2.jpg?v=6')"
     },
     {
-        "--bg-color": "#051105",
-        "--accent": "#73daca",
-        "--bg-image": "url('bg3.png?v=5')"
+        "--bg-color": "#0f0514",
+        "--accent": "#c084fc",
+        "--bg-image": "url('bg3.jpg?v=6')"
     },
     {
-        "--bg-color": "#0a0514",
-        "--accent": "#bb9af7",
-        "--bg-image": "url('bg4.png?v=5')"
+        "--bg-color": "#1a1a05",
+        "--accent": "#facc15",
+        "--bg-image": "url('bg4.png?v=6')"
     }
 ];
+
 
 
 
