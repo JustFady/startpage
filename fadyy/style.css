@@ -94,15 +94,18 @@ body {
 .sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     padding: 1rem;
-    text-align: center;
 }
 
 .avatar-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.avatar-container:hover {
+    transform: scale(1.05);
 }
 
 .avatar-container img {
@@ -120,35 +123,23 @@ body {
 
 
 #clock {
-    font-size: 4.5rem;
+    font-size: 4rem;
     font-weight: 800;
-    letter-spacing: -3px;
-    line-height: 1;
+    letter-spacing: -2px;
     margin-bottom: 0.5rem;
 }
 
 #date {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: var(--text-secondary);
     font-weight: 300;
-    margin-bottom: 2rem;
-}
-
-.greeting-container {
-    margin-bottom: 3rem;
-}
-
-#greeting {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
 }
 
 .status-container {
+    margin-top: 0.8rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 
@@ -214,13 +205,9 @@ body {
 .category {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 2rem;
+    border-radius: 16px;
+    padding: 1.5rem;
     transition: transform 0.3s ease, background 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
 }
 
 .category:hover {
@@ -230,15 +217,14 @@ body {
 
 .category-title {
     font-family: 'SpaceMono Nerd Font', monospace;
-    font-size: 0.9rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--accent);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     font-weight: 800;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
 }
 
@@ -254,17 +240,16 @@ body {
 .links a {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 1rem;
-    transition: all 0.2s ease;
+    font-size: 1.1rem;
+    transition: color 0.2s ease, padding-left 0.2s ease;
     display: inline-block;
     cursor: pointer;
 }
 
 .links a:hover {
     color: var(--text-primary);
-    transform: translateY(-2px);
+    padding-left: 5px;
 }
-
 
 .links a::before {
     content: '→';
