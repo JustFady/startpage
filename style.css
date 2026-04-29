@@ -3,8 +3,9 @@
   font-display: swap;
   src:
     local("SpaceMono Nerd Font"),
-    url(../src/fonts/SpaceMonoNF.woff2) format("woff2"),
-    url(../src/fonts/SpaceMonoNF.woff) format("woff");
+    url(fonts/SpaceMonoNF.woff2) format("woff2"),
+    url(fonts/SpaceMonoNF.woff) format("woff");
+
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
