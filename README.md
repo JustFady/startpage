@@ -90,4 +90,6 @@ The checked-in `manifest.json` is a web app manifest for installable site metada
 
 ## License
 
-Personal project by [Fady Youssef](https://fadyyoussef.dev/). Feel free to fork or adapt it for your own startpage.
+Personal project by [Fady Youssef](https://fadyyoussef.dev/). Feel free to fork this project or reach out if you have questions, ideas, or run into any issues. If you decide to use it, please consider leaving a star.
+
+
