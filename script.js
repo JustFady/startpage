@@ -76,16 +76,37 @@ function handleSearch(event) {
     }
 }
 
+let searchFocusLocked = true;
+
+function isTypingField(element) {
+    return element && (
+        element.tagName === 'INPUT' ||
+        element.tagName === 'SELECT' ||
+        element.tagName === 'TEXTAREA' ||
+        element.isContentEditable
+    );
+}
+
+function focusSearchInput() {
+    if (!searchFocusLocked) {
+        return;
+    }
+
+    const searchInput = document.getElementById('search-input');
+    searchInput.focus({ preventScroll: true });
+    searchInput.select();
+}
+
+function focusSearchInputOnStartup() {
+    [0, 50, 100, 250, 500, 1000, 1500].forEach(delay => {
+        setTimeout(focusSearchInput, delay);
+    });
+}
+
 function handleGlobalSearchFocus(event) {
     const activeElement = document.activeElement;
-    const isTypingField = activeElement && (
-        activeElement.tagName === 'INPUT' ||
-        activeElement.tagName === 'SELECT' ||
-        activeElement.tagName === 'TEXTAREA' ||
-        activeElement.isContentEditable
-    );
 
-    if (isTypingField || event.ctrlKey || event.metaKey || event.altKey || event.key.length !== 1) {
+    if (isTypingField(activeElement) || event.ctrlKey || event.metaKey || event.altKey || event.key.length !== 1) {
         return;
     }
 
@@ -242,6 +263,19 @@ setInterval(fetchWeather, 600000);
 document.getElementById('search-input').addEventListener('keydown', handleSearch);
 document.getElementById('todo-input').addEventListener('keydown', addTodo);
 document.addEventListener('keydown', handleGlobalSearchFocus);
+document.addEventListener('pointerdown', () => {
+    searchFocusLocked = false;
+}, { once: true });
+document.addEventListener('focusin', event => {
+    if (isTypingField(event.target) && event.target.id !== 'search-input') {
+        searchFocusLocked = false;
+    }
+});
+window.addEventListener('load', focusSearchInputOnStartup);
+window.addEventListener('pageshow', focusSearchInputOnStartup);
+window.addEventListener('focus', focusSearchInput);
+
+focusSearchInputOnStartup();
 
 const greeting = document.getElementById('greeting');
 const hour = new Date().getHours();
