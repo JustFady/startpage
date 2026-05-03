@@ -76,8 +76,6 @@ function handleSearch(event) {
     }
 }
 
-let searchFocusLocked = true;
-
 function isTypingField(element) {
     return element && (
         element.tagName === 'INPUT' ||
@@ -87,19 +85,25 @@ function isTypingField(element) {
     );
 }
 
-function focusSearchInput() {
-    if (!searchFocusLocked) {
-        return;
-    }
-
+function focusSearchInput(selectText = false) {
     const searchInput = document.getElementById('search-input');
     searchInput.focus({ preventScroll: true });
-    searchInput.select();
+
+    if (selectText) {
+        searchInput.select();
+    }
 }
 
 function focusSearchInputOnStartup() {
-    [0, 50, 100, 250, 500, 1000, 1500].forEach(delay => {
-        setTimeout(focusSearchInput, delay);
+    const searchInput = document.getElementById('search-input');
+    const retryDelays = [0, 16, 50, 100, 250, 500, 1000, 1500, 2500];
+
+    retryDelays.forEach(delay => {
+        setTimeout(() => {
+            if (document.activeElement !== searchInput) {
+                focusSearchInput(true);
+            }
+        }, delay);
     });
 }
 
@@ -263,17 +267,14 @@ setInterval(fetchWeather, 600000);
 document.getElementById('search-input').addEventListener('keydown', handleSearch);
 document.getElementById('todo-input').addEventListener('keydown', addTodo);
 document.addEventListener('keydown', handleGlobalSearchFocus);
-document.addEventListener('pointerdown', () => {
-    searchFocusLocked = false;
-}, { once: true });
-document.addEventListener('focusin', event => {
-    if (isTypingField(event.target) && event.target.id !== 'search-input') {
-        searchFocusLocked = false;
-    }
-});
 window.addEventListener('load', focusSearchInputOnStartup);
 window.addEventListener('pageshow', focusSearchInputOnStartup);
-window.addEventListener('focus', focusSearchInput);
+window.addEventListener('focus', () => focusSearchInput(true));
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        focusSearchInputOnStartup();
+    }
+});
 
 focusSearchInputOnStartup();
 
