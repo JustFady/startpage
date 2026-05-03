@@ -76,6 +76,21 @@ function handleSearch(event) {
     }
 }
 
+function focusSearchInput() {
+    const activeElement = document.activeElement;
+    const isTypingField = activeElement && (
+        activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'TEXTAREA' ||
+        activeElement.isContentEditable
+    );
+
+    if (isTypingField && activeElement.id !== 'search-input') {
+        return;
+    }
+
+    document.getElementById('search-input').focus({ preventScroll: true });
+}
+
 function handleGlobalSearchFocus(event) {
     const activeElement = document.activeElement;
     const isTypingField = activeElement && (
@@ -174,6 +189,14 @@ setInterval(fetchWeather, 600000);
 document.getElementById('search-input').addEventListener('keydown', handleSearch);
 document.getElementById('todo-input').addEventListener('keydown', addTodo);
 document.addEventListener('keydown', handleGlobalSearchFocus);
+window.addEventListener('pageshow', () => setTimeout(focusSearchInput, 0));
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        setTimeout(focusSearchInput, 0);
+    }
+});
+setTimeout(focusSearchInput, 0);
+setTimeout(focusSearchInput, 250);
 
 const greeting = document.getElementById('greeting');
 const hour = new Date().getHours();
