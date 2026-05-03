@@ -92,6 +92,12 @@ function focusSearchInput(force = false) {
     document.getElementById('search-input').focus({ preventScroll: true });
 }
 
+function focusSearchInputOnReady(force = false) {
+    focusSearchInput(force);
+    requestAnimationFrame(() => focusSearchInput(force));
+    setTimeout(() => focusSearchInput(force), 100);
+}
+
 function handleGlobalSearchFocus(event) {
     const activeElement = document.activeElement;
     const isTypingField = activeElement && (
@@ -258,14 +264,16 @@ setInterval(fetchWeather, 600000);
 document.getElementById('search-input').addEventListener('keydown', handleSearch);
 document.getElementById('todo-input').addEventListener('keydown', addTodo);
 document.addEventListener('keydown', handleGlobalSearchFocus);
-window.addEventListener('pageshow', () => setTimeout(focusSearchInput, 0));
+window.addEventListener('load', () => focusSearchInputOnReady(true));
+window.addEventListener('pageshow', focusSearchInputOnReady);
+window.addEventListener('focus', focusSearchInputOnReady);
 document.addEventListener('visibilitychange', () => {
     if (!document.hidden) {
-        setTimeout(focusSearchInput, 0);
+        focusSearchInputOnReady();
     }
 });
-setTimeout(focusSearchInput, 0);
-setTimeout(focusSearchInput, 250);
+
+focusSearchInputOnReady(true);
 
 const greeting = document.getElementById('greeting');
 const hour = new Date().getHours();
