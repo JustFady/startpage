@@ -2,57 +2,41 @@
 
 A personal browser startpage with a glass dashboard layout, quick links, auto-focused search, weather, themes, and persistent tasks.
 
-Live site: [https://justfady.github.io/startpage/](https://justfady.github.io/startpage/)
+Demo: [https://justfady.github.io/startpage/](https://justfady.github.io/startpage/)
 
-## Overview
+## What You Get
 
-This project is built with plain HTML, CSS, and JavaScript. It can run as a static website, but it works best as a browser new-tab page because the glass search bar can receive focus immediately when a new tab opens.
-
-Modern browsers often keep the address bar focused on normal hosted pages. For reliable search autofocus, use the page through a new-tab extension setup instead of only opening the GitHub Pages URL.
-
-## Features
-
-- Glass dashboard layout with responsive desktop and mobile spacing.
-- Auto-focused Google search in the glass panel when used as a new-tab page.
+- Responsive glass dashboard for desktop and mobile.
+- Search box that can autofocus when used as a browser new-tab page.
 - Type-anywhere search fallback when the page itself has focus.
 - Click-to-cycle background themes with saved preference.
-- Weather from `wttr.in` with cached last-known value.
-- Persistent task list with completed states and delete controls.
+- Weather from `wttr.in` with a cached last-known value.
+- Persistent task list stored in browser `localStorage`.
 - Quick links grouped by general, development, and media categories.
-- Local custom fonts, app icons, and a web app manifest.
+- Local fonts, app icons, backgrounds, and a web app manifest.
 
-## New Tab Setup
+## Set Up Your Own
 
-Use this mode if you want typing in a fresh tab to go straight into the glass search bar.
+This is a plain static site. There is no framework, package install, account, or build step.
 
-Recommended setup:
+1. Fork this repository, or download/clone it:
 
-1. Install a new-tab redirect extension for your browser.
-2. Set the redirect URL to:
-
-```text
-https://justfady.github.io/startpage/
+```sh
+git clone https://github.com/JustFady/startpage.git
+cd startpage
 ```
 
-3. Open a new tab and start typing.
+2. Make it yours:
 
-If the search bar does not focus after changes, reload the extension from the extensions page and open a brand-new tab.
+- Edit quick links in `index.html`.
+- Change the page title, footer credit, and source link in `index.html`.
+- Replace `images/avatar.png`, `images/bg1.jpg`, `images/bg2.jpg`, `images/bg3.jpg`, and `images/bg4.jpg`.
+- Update theme colors and background mappings in the `themes` array in `script.js`.
+- Change the search provider in `handleSearch()` inside `script.js`.
+- Rename the app in `manifest.json`.
+- Adjust layout, spacing, and colors in `style.css`.
 
-The checked-in `manifest.json` is a web app manifest for installable site metadata. It is not a native Chrome extension manifest. If you want to package this project as a standalone unpacked extension, add a separate extension manifest with a new-tab override.
-
-## Static Site Use
-
-You can also use the hosted site directly:
-
-[https://justfady.github.io/startpage/](https://justfady.github.io/startpage/)
-
-When used as a normal hosted page, the browser may keep focus in the address bar. That is browser behavior, not a page bug. Click into the page or use a new-tab extension setup for reliable glass search autofocus.
-
-## Local Development
-
-Open `index.html` directly in a browser, or serve the folder with any static file server.
-
-Example:
+3. Run it locally by opening `index.html` directly, or serve the folder:
 
 ```sh
 python3 -m http.server 8000
@@ -64,47 +48,45 @@ Then open:
 http://localhost:8000
 ```
 
-No build step is required.
+4. Deploy it anywhere that can host static files.
+
+For GitHub Pages, push your fork to GitHub, then enable Pages for the `main` branch in your repository settings. After it publishes, your URL will usually look like:
+
+```text
+https://YOUR_USERNAME.github.io/startpage/
+```
+
+## Browser New-Tab Use
+
+The page works as a normal hosted site, but browsers often keep the address bar focused on regular pages. If you want typing in a fresh tab to go straight into the glass search bar, use a new-tab redirect extension and point it at your deployed URL.
+
+Example:
+
+```text
+https://YOUR_USERNAME.github.io/startpage/
+```
+
+If autofocus does not apply after a change, reload the extension from your browser extensions page and open a brand-new tab.
+
+The checked-in `manifest.json` is a web app manifest for installable site metadata. It is not a Chrome extension manifest. To package this as an unpacked extension, add a separate extension manifest with a new-tab override.
 
 ## Project Structure
 
 ```text
 .
-├── index.html       # Page markup
+├── index.html       # Page markup, links, footer, asset references
 ├── style.css        # Layout, themes, and responsive styling
-├── script.js        # Search, weather, tasks, time, and theme behavior
+├── script.js        # Search, weather, tasks, time, quotes, and themes
 ├── manifest.json    # Web app manifest for installable/PWA metadata
 ├── images/          # Backgrounds, icons, and avatar
 └── fonts/           # Local SpaceMono Nerd Font files
 ```
 
-## Customization
-
-- Quick links: edit the link groups in `index.html`.
-- Background themes: update the `themes` array in `script.js`.
-- Search provider: change the URL in `handleSearch()` inside `script.js`.
-- Avatar and backgrounds: replace files in `images/`.
-- Colors and layout: adjust CSS variables and responsive rules in `style.css`.
-
-## Deployment
-
-The live site is published with GitHub Pages from the `main` branch.
-
-Typical deploy flow:
-
-```sh
-git add .
-git commit -m "Describe the change"
-git push origin main
-```
-
-GitHub Pages can take a minute to serve the latest HTML. Script and style cache versions are tracked in `index.html` with query strings like `script.js?v=22`.
-
 ## Notes
 
 - Weather uses `wttr.in`, so it depends on network availability and that service being reachable.
-- Tasks and theme preference are stored in browser `localStorage`.
-- The browser controls whether a normal hosted page can steal focus from the address bar. Use the new-tab extension setup when autofocus matters.
+- Tasks, theme preference, and cached weather are stored in browser `localStorage`.
+- Cache-busting query strings, such as `script.js?v=22`, live in `index.html`. Bump them when your deployed page keeps serving old assets.
 
 ## License
 
