@@ -204,6 +204,35 @@ body {
     margin-top: clamp(2rem, 5vw, 3.25rem);
 }
 
+.settings-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+}
+
+#weather-city-input,
+#density-select {
+    min-width: 0;
+    padding: 0.7rem 0.85rem;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    outline: none;
+}
+
+#weather-city-input:focus,
+#density-select:focus {
+    border-color: var(--accent);
+}
+
+#density-select {
+    cursor: pointer;
+}
+
 .quote-container {
     margin-top: clamp(1.5rem, 5vw, 3rem);
     padding: 1.5rem;
@@ -281,6 +310,7 @@ body {
     min-width: 0;
     display: flex;
     flex-direction: column;
+    min-height: 210px;
 }
 
 .category:hover {
@@ -315,6 +345,10 @@ body {
 
 .links li {
     margin-bottom: 0.8rem;
+}
+
+.links li:last-child {
+    margin-bottom: 0;
 }
 
 .links a {
@@ -361,11 +395,13 @@ body {
 .todo-checkbox:checked::after {
     content: '';
     position: absolute;
-    color: black;
-    font-size: 12px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 4px;
+    top: 4px;
+    left: 3px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    transform: rotate(-45deg);
 }
 
 
@@ -392,6 +428,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.7rem;
     color: var(--text-secondary);
     font-size: 1rem;
     padding: 0.4rem 0;
@@ -402,7 +439,29 @@ body {
     border-bottom: none;
 }
 
+.todo-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+}
+
+.todo-text {
+    overflow-wrap: anywhere;
+}
+
+.todo-text.completed {
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: line-through;
+}
+
 .todo-delete {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1;
     cursor: pointer;
     opacity: 0.3;
     transition: opacity 0.2s;
@@ -411,6 +470,32 @@ body {
 .todo-delete:hover {
     opacity: 1;
     color: #f7768e;
+}
+
+body.compact-density .container {
+    gap: 1rem;
+    padding: clamp(0.9rem, 3vw, 1.75rem);
+}
+
+body.compact-density .main-content {
+    gap: 0.9rem;
+}
+
+body.compact-density .category {
+    min-height: 170px;
+    padding: 1rem;
+}
+
+body.compact-density .category-title {
+    margin-bottom: 0.75rem;
+}
+
+body.compact-density .links li {
+    margin-bottom: 0.45rem;
+}
+
+body.compact-density .links a {
+    font-size: 0.98rem;
 }
 
 
@@ -477,6 +562,10 @@ body {
 
     .status-item {
         font-size: 0.8rem;
+    }
+
+    .settings-panel {
+        grid-template-columns: 1fr;
     }
 
     #search-input {

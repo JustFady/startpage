@@ -1,4 +1,6 @@
 let currentThemeIndex = parseInt(localStorage.getItem('fadyy_theme_index')) || 0;
+let weatherCity = localStorage.getItem('fadyy_weather_city') || '';
+let linkDensity = localStorage.getItem('fadyy_link_density') || 'spacious';
 
 const themes = [
     {
@@ -76,15 +78,16 @@ function handleSearch(event) {
     }
 }
 
-function focusSearchInput() {
+function focusSearchInput(force = false) {
     const activeElement = document.activeElement;
     const isTypingField = activeElement && (
         activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'SELECT' ||
         activeElement.tagName === 'TEXTAREA' ||
         activeElement.isContentEditable
     );
 
-    if (isTypingField && activeElement.id !== 'search-input') {
+    if (!force && isTypingField && activeElement.id !== 'search-input') {
         return;
     }
 
@@ -95,6 +98,7 @@ function handleGlobalSearchFocus(event) {
     const activeElement = document.activeElement;
     const isTypingField = activeElement && (
         activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'SELECT' ||
         activeElement.tagName === 'TEXTAREA' ||
         activeElement.isContentEditable
     );
@@ -117,54 +121,162 @@ function updateStatus() {
     mem.textContent = `${(Math.random() * 2 + 4).toFixed(1)}GB`;
 }
 
+function getWeatherUrl() {
+    const cityPath = weatherCity ? `${encodeURIComponent(weatherCity)}/` : '';
+    return `https://wttr.in/${cityPath}?format=j1`;
+}
+
+function showCachedWeather() {
+    let cachedWeather = null;
+
+    try {
+        cachedWeather = JSON.parse(localStorage.getItem('fadyy_weather_cache') || 'null');
+    } catch {
+        localStorage.removeItem('fadyy_weather_cache');
+    }
+
+    if (cachedWeather && cachedWeather.text) {
+        document.getElementById('weather').textContent = cachedWeather.text;
+    }
+}
+
 function fetchWeather() {
     const weatherElement = document.getElementById('weather');
-    fetch('https://wttr.in/?format=j1')
+    fetch(getWeatherUrl())
         .then(response => response.json())
         .then(data => {
             const current = data.current_condition[0];
             const city = data.nearest_area[0].areaName[0].value;
             const tempF = current.temp_F;
-            weatherElement.textContent = `${city}: ${tempF} F`;
+            const weatherText = `${city}: ${tempF} F`;
+            weatherElement.textContent = weatherText;
+            localStorage.setItem('fadyy_weather_cache', JSON.stringify({
+                text: weatherText,
+                updatedAt: Date.now()
+            }));
         })
         .catch(err => {
             console.error('Weather fetch failed', err);
-            weatherElement.textContent = 'Weather Unavailable';
+            if (!weatherElement.textContent || weatherElement.textContent === 'Loading...') {
+                weatherElement.textContent = 'Weather Unavailable';
+            }
         });
+}
+
+function getTodos() {
+    const rawTodos = JSON.parse(localStorage.getItem('fadyy_todos') || '[]');
+    return rawTodos.map(todo => {
+        if (typeof todo === 'string') {
+            return { text: todo, completed: false };
+        }
+
+        return {
+            text: todo.text || '',
+            completed: Boolean(todo.completed)
+        };
+    }).filter(todo => todo.text);
+}
+
+function saveTodos(todos) {
+    localStorage.setItem('fadyy_todos', JSON.stringify(todos));
 }
 
 function loadTodos() {
     const todoList = document.getElementById('todo-list');
-    const todos = JSON.parse(localStorage.getItem('fadyy_todos')) || [];
+    const todos = getTodos();
     todoList.innerHTML = '';
     todos.forEach((todo, index) => {
         const li = document.createElement('li');
-        li.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <input type="checkbox" class="todo-checkbox" onclick="deleteTodo(${index})">
-                <span>${todo}</span>
-            </div>
-            <span class="todo-delete" onclick="deleteTodo(${index})">x</span>
-        `;
+        const row = document.createElement('div');
+        const checkbox = document.createElement('input');
+        const text = document.createElement('span');
+        const deleteButton = document.createElement('button');
+
+        row.className = 'todo-row';
+        checkbox.type = 'checkbox';
+        checkbox.className = 'todo-checkbox';
+        checkbox.checked = todo.completed;
+        checkbox.addEventListener('change', () => toggleTodo(index));
+
+        text.className = `todo-text${todo.completed ? ' completed' : ''}`;
+        text.textContent = todo.text;
+
+        deleteButton.type = 'button';
+        deleteButton.className = 'todo-delete';
+        deleteButton.textContent = 'x';
+        deleteButton.setAttribute('aria-label', `Delete ${todo.text}`);
+        deleteButton.addEventListener('click', () => deleteTodo(index));
+
+        row.append(checkbox, text);
+        li.append(row, deleteButton);
         todoList.appendChild(li);
     });
+    saveTodos(todos);
 }
 
 function addTodo(event) {
     if (event.key === 'Enter' && event.target.value.trim()) {
-        const todos = JSON.parse(localStorage.getItem('fadyy_todos')) || [];
-        todos.push(event.target.value.trim());
-        localStorage.setItem('fadyy_todos', JSON.stringify(todos));
+        const todos = getTodos();
+        todos.push({ text: event.target.value.trim(), completed: false });
+        saveTodos(todos);
         event.target.value = '';
         loadTodos();
     }
 }
 
-function deleteTodo(index) {
-    const todos = JSON.parse(localStorage.getItem('fadyy_todos')) || [];
-    todos.splice(index, 1);
-    localStorage.setItem('fadyy_todos', JSON.stringify(todos));
+function toggleTodo(index) {
+    const todos = getTodos();
+    todos[index].completed = !todos[index].completed;
+    saveTodos(todos);
     loadTodos();
+}
+
+function deleteTodo(index) {
+    const todos = getTodos();
+    todos.splice(index, 1);
+    saveTodos(todos);
+    loadTodos();
+}
+
+function applyDensity() {
+    document.body.classList.toggle('compact-density', linkDensity === 'compact');
+    document.getElementById('density-select').value = linkDensity;
+}
+
+function saveWeatherCity() {
+    const weatherInput = document.getElementById('weather-city-input');
+    const nextCity = weatherInput.value.trim();
+
+    if (nextCity === weatherCity) {
+        return;
+    }
+
+    weatherCity = nextCity;
+    localStorage.setItem('fadyy_weather_city', weatherCity);
+    document.getElementById('weather').textContent = 'Loading...';
+    fetchWeather();
+}
+
+function initSettings() {
+    const weatherInput = document.getElementById('weather-city-input');
+    const densitySelect = document.getElementById('density-select');
+
+    weatherInput.value = weatherCity;
+    weatherInput.addEventListener('blur', saveWeatherCity);
+    weatherInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+            saveWeatherCity();
+            focusSearchInput(true);
+        }
+    });
+
+    densitySelect.addEventListener('change', event => {
+        linkDensity = event.target.value;
+        localStorage.setItem('fadyy_link_density', linkDensity);
+        applyDensity();
+    });
+
+    applyDensity();
 }
 
 function displayQuote() {
@@ -176,9 +288,11 @@ function displayQuote() {
 
 // Initial calls
 applyTheme(currentThemeIndex);
+initSettings();
 updateTime();
 updateStatus();
 loadTodos();
+showCachedWeather();
 fetchWeather();
 displayQuote();
 

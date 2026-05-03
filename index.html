@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0c10">
     <title>Dashboard | Fady</title>
 
-    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="icon" href="images/icon-192.png?v=1" type="image/png">
+    <link rel="apple-touch-icon" href="images/icon-192.png?v=1">
+    <link rel="manifest" href="manifest.json?v=1">
+    <link rel="stylesheet" href="style.css?v=15">
 
 </head>
 <body>
@@ -37,6 +41,13 @@
             </div>
             
             <div class="bottom">
+                <div class="settings-panel" aria-label="Startpage settings">
+                    <input type="text" id="weather-city-input" placeholder="Weather city" autocomplete="off">
+                    <select id="density-select" aria-label="Link density">
+                        <option value="spacious">Spacious</option>
+                        <option value="compact">Compact</option>
+                    </select>
+                </div>
                 <div class="search-box">
                     <input type="text" id="search-input" placeholder="Search the web..." autocomplete="off" autofocus>
                 </div>
@@ -91,6 +102,6 @@
             </section>
         </main>
     </div>
-    <script src="script.js?v=14"></script>
+    <script src="script.js?v=15"></script>
 </body>
 </html>
