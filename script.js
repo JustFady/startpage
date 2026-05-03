@@ -1,5 +1,4 @@
 let currentThemeIndex = parseInt(localStorage.getItem('fadyy_theme_index')) || 0;
-let weatherCity = localStorage.getItem('fadyy_weather_city') || '';
 
 const themes = [
     {
@@ -121,8 +120,7 @@ function updateStatus() {
 }
 
 function getWeatherUrl() {
-    const cityPath = weatherCity ? `${encodeURIComponent(weatherCity)}/` : '';
-    return `https://wttr.in/${cityPath}?format=j1`;
+    return 'https://wttr.in/?format=j1';
 }
 
 function showCachedWeather() {
@@ -237,33 +235,6 @@ function deleteTodo(index) {
     loadTodos();
 }
 
-function saveWeatherCity() {
-    const weatherInput = document.getElementById('weather-city-input');
-    const nextCity = weatherInput.value.trim();
-
-    if (nextCity === weatherCity) {
-        return;
-    }
-
-    weatherCity = nextCity;
-    localStorage.setItem('fadyy_weather_city', weatherCity);
-    document.getElementById('weather').textContent = 'Loading...';
-    fetchWeather();
-}
-
-function initSettings() {
-    const weatherInput = document.getElementById('weather-city-input');
-
-    weatherInput.value = weatherCity;
-    weatherInput.addEventListener('blur', saveWeatherCity);
-    weatherInput.addEventListener('keydown', event => {
-        if (event.key === 'Enter') {
-            saveWeatherCity();
-            focusSearchInput(true);
-        }
-    });
-}
-
 function displayQuote() {
     const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
     const quote = quotes[dayOfYear % quotes.length];
@@ -273,7 +244,6 @@ function displayQuote() {
 
 // Initial calls
 applyTheme(currentThemeIndex);
-initSettings();
 updateTime();
 updateStatus();
 loadTodos();

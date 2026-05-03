@@ -204,27 +204,6 @@ body {
     margin-top: clamp(2rem, 5vw, 3.25rem);
 }
 
-.settings-panel {
-    margin-bottom: 0.8rem;
-}
-
-#weather-city-input {
-    width: 100%;
-    min-width: 0;
-    padding: 0.7rem 0.85rem;
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
-    color: white;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
-    outline: none;
-}
-
-#weather-city-input:focus {
-    border-color: var(--accent);
-}
-
 .quote-container {
     margin-top: clamp(1.5rem, 5vw, 3rem);
     padding: 1.5rem;
