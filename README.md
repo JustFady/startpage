@@ -26,3 +26,7 @@ A personal browser startpage with a glass dashboard layout, quick links, search,
 ## Local Use
 
 Open `index.html` directly in a browser, or serve the folder with any static file server.
+
+## Contributing
+
+Feel free to fork this project or reach out if you have questions, ideas, or run into any issues. If you decide to use it, please consider leaving a star.
