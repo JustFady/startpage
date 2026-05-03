@@ -26,7 +26,7 @@ const themes = [
 const quotes = [
     { text: "The best revenge is to be unlike him who performed the injury.", author: "Marcus Aurelius" },
     { text: "We suffer more often in imagination than in reality.", author: "Seneca" },
-    { text: "A fit body, a calm mind, a house full of love. These things cannot be bought — they must be earned.", author: "Naval Ravikant" },
+    { text: "A fit body, a calm mind, a house full of love. These things cannot be bought - they must be earned.", author: "Naval Ravikant" },
     { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
     { text: "Discipline is choosing between what you want now and what you want most.", author: "Abraham Lincoln" },
     { text: "He who has a why to live can bear almost any how.", author: "Friedrich Nietzsche" },
@@ -80,8 +80,8 @@ function updateStatus() {
     const cpu = document.getElementById('cpu-load');
     const mem = document.getElementById('mem-usage');
     
-    cpu.textContent = `CPU: ${Math.floor(Math.random() * 15) + 5}%`;
-    mem.textContent = `MEM: ${(Math.random() * 2 + 4).toFixed(1)}GB`;
+    cpu.textContent = `${Math.floor(Math.random() * 15) + 5}%`;
+    mem.textContent = `${(Math.random() * 2 + 4).toFixed(1)}GB`;
 }
 
 function fetchWeather() {
@@ -92,7 +92,7 @@ function fetchWeather() {
             const current = data.current_condition[0];
             const city = data.nearest_area[0].areaName[0].value;
             const tempF = current.temp_F;
-            weatherElement.textContent = `${city}: ${tempF}°F`;
+            weatherElement.textContent = `${city}: ${tempF} F`;
         })
         .catch(err => {
             console.error('Weather fetch failed', err);
@@ -111,7 +111,7 @@ function loadTodos() {
                 <input type="checkbox" class="todo-checkbox" onclick="deleteTodo(${index})">
                 <span>${todo}</span>
             </div>
-            <span class="todo-delete" onclick="deleteTodo(${index})">󰅖</span>
+            <span class="todo-delete" onclick="deleteTodo(${index})">x</span>
         `;
         todoList.appendChild(li);
     });

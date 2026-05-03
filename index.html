@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Fady</title>
 
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=11">
 
 </head>
 <body>
@@ -24,9 +24,9 @@
                 <div class="greeting-container">
                     <h2 id="greeting">Welcome back</h2>
                     <div class="status-container">
-                        <div class="status-item"><span>󰻠</span> <span id="cpu-load">CPU: --</span></div>
-                        <div class="status-item"><span>󰍛</span> <span id="mem-usage">MEM: --</span></div>
-                        <div class="status-item"><span>󰖐</span> <span id="weather">Loading...</span></div>
+                        <div class="status-item"><span class="status-badge">CPU</span> <span id="cpu-load">--</span></div>
+                        <div class="status-item"><span class="status-badge">MEM</span> <span id="mem-usage">--</span></div>
+                        <div class="status-item"><span class="status-badge">WX</span> <span id="weather">Loading...</span></div>
                     </div>
                 </div>
 
@@ -45,7 +45,7 @@
 
         <main class="main-content">
             <section class="category">
-                <h3 class="category-title"><span>󰋜</span> General</h3>
+                <h3 class="category-title">General</h3>
                 <ul class="links">
                     <li><a href="https://google.com">Google</a></li>
                     <li><a href="https://mail.proton.me">ProtonMail</a></li>
@@ -57,7 +57,7 @@
             </section>
 
             <section class="category">
-                <h3 class="category-title"><span>󰅩</span> Dev</h3>
+                <h3 class="category-title">Dev</h3>
                 <ul class="links">
                     <li><a href="https://github.com">GitHub</a></li>
                     <li><a href="https://codesignal.com">CodeSignal</a></li>
@@ -69,18 +69,19 @@
             </section>
 
             <section class="category">
-                <h3 class="category-title"><span>󰝚</span> Media</h3>
+                <h3 class="category-title">Media</h3>
                 <ul class="links">
                     <li><a href="https://netflix.com">Netflix</a></li>
-                    <li><a href="https://hulu.com">Hulu</a></li>
                     <li><a href="https://hbomax.com">HBO Max</a></li>
+                    <li><a href="https://paramountplus.com">Paramount Plus</a></li>
+                    <li><a href="https://hulu.com">Hulu</a></li>
                     <li><a href="https://amazon.com/primevideo">Prime Video</a></li>
                     <li><a href="https://twitch.tv">Twitch</a></li>
                 </ul>
             </section>
 
             <section class="category todo-section">
-                <h3 class="category-title"><span>󰗡</span> Tasks</h3>
+                <h3 class="category-title">Tasks</h3>
                 <ul class="links" id="todo-list">
                     <!-- Tasks will be injected here -->
                 </ul>
@@ -90,6 +91,6 @@
             </section>
         </main>
     </div>
-    <script src="script.js?v=10"></script>
+    <script src="script.js?v=11"></script>
 </body>
 </html>
