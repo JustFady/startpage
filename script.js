@@ -1,6 +1,5 @@
 let currentThemeIndex = parseInt(localStorage.getItem('fadyy_theme_index')) || 0;
 let weatherCity = localStorage.getItem('fadyy_weather_city') || '';
-let linkDensity = localStorage.getItem('fadyy_link_density') || 'spacious';
 
 const themes = [
     {
@@ -238,11 +237,6 @@ function deleteTodo(index) {
     loadTodos();
 }
 
-function applyDensity() {
-    document.body.classList.toggle('compact-density', linkDensity === 'compact');
-    document.getElementById('density-select').value = linkDensity;
-}
-
 function saveWeatherCity() {
     const weatherInput = document.getElementById('weather-city-input');
     const nextCity = weatherInput.value.trim();
@@ -259,7 +253,6 @@ function saveWeatherCity() {
 
 function initSettings() {
     const weatherInput = document.getElementById('weather-city-input');
-    const densitySelect = document.getElementById('density-select');
 
     weatherInput.value = weatherCity;
     weatherInput.addEventListener('blur', saveWeatherCity);
@@ -269,14 +262,6 @@ function initSettings() {
             focusSearchInput(true);
         }
     });
-
-    densitySelect.addEventListener('change', event => {
-        linkDensity = event.target.value;
-        localStorage.setItem('fadyy_link_density', linkDensity);
-        applyDensity();
-    });
-
-    applyDensity();
 }
 
 function displayQuote() {
