@@ -76,6 +76,24 @@ function handleSearch(event) {
     }
 }
 
+function handleGlobalSearchFocus(event) {
+    const activeElement = document.activeElement;
+    const isTypingField = activeElement && (
+        activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'TEXTAREA' ||
+        activeElement.isContentEditable
+    );
+
+    if (isTypingField || event.ctrlKey || event.metaKey || event.altKey || event.key.length !== 1) {
+        return;
+    }
+
+    const searchInput = document.getElementById('search-input');
+    searchInput.focus();
+    searchInput.value += event.key;
+    event.preventDefault();
+}
+
 function updateStatus() {
     const cpu = document.getElementById('cpu-load');
     const mem = document.getElementById('mem-usage');
@@ -155,6 +173,7 @@ setInterval(fetchWeather, 600000);
 
 document.getElementById('search-input').addEventListener('keydown', handleSearch);
 document.getElementById('todo-input').addEventListener('keydown', addTodo);
+document.addEventListener('keydown', handleGlobalSearchFocus);
 
 const greeting = document.getElementById('greeting');
 const hour = new Date().getHours();
