@@ -53,6 +53,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    padding-bottom: 3rem;
 
 
 
@@ -62,6 +63,28 @@ body {
     background-size: cover;
     background-position: center;
     transition: background 0.5s ease-in-out;
+}
+
+.site-credit {
+    position: fixed;
+    right: 1rem;
+    bottom: 0.9rem;
+    z-index: 2;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.4;
+    text-align: right;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.site-credit a {
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.site-credit a:hover {
+    color: var(--accent);
 }
 
 
@@ -505,6 +528,7 @@ body {
 @media (max-width: 560px) {
     body {
         padding: 0;
+        padding-bottom: 3rem;
     }
 
     .container {
@@ -548,5 +572,14 @@ body {
 
     .category:hover {
         transform: none;
+    }
+
+    .site-credit {
+        right: 0;
+        left: 0;
+        bottom: 0.75rem;
+        padding: 0 1rem;
+        text-align: center;
+        font-size: 0.72rem;
     }
 }
