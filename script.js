@@ -76,28 +76,6 @@ function handleSearch(event) {
     }
 }
 
-function focusSearchInput(force = false) {
-    const activeElement = document.activeElement;
-    const isTypingField = activeElement && (
-        activeElement.tagName === 'INPUT' ||
-        activeElement.tagName === 'SELECT' ||
-        activeElement.tagName === 'TEXTAREA' ||
-        activeElement.isContentEditable
-    );
-
-    if (!force && isTypingField && activeElement.id !== 'search-input') {
-        return;
-    }
-
-    document.getElementById('search-input').focus({ preventScroll: true });
-}
-
-function focusSearchInputOnReady(force = false) {
-    focusSearchInput(force);
-    requestAnimationFrame(() => focusSearchInput(force));
-    setTimeout(() => focusSearchInput(force), 100);
-}
-
 function handleGlobalSearchFocus(event) {
     const activeElement = document.activeElement;
     const isTypingField = activeElement && (
@@ -264,16 +242,6 @@ setInterval(fetchWeather, 600000);
 document.getElementById('search-input').addEventListener('keydown', handleSearch);
 document.getElementById('todo-input').addEventListener('keydown', addTodo);
 document.addEventListener('keydown', handleGlobalSearchFocus);
-window.addEventListener('load', () => focusSearchInputOnReady(true));
-window.addEventListener('pageshow', focusSearchInputOnReady);
-window.addEventListener('focus', focusSearchInputOnReady);
-document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-        focusSearchInputOnReady();
-    }
-});
-
-focusSearchInputOnReady(true);
 
 const greeting = document.getElementById('greeting');
 const hour = new Date().getHours();
